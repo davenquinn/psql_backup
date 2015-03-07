@@ -8,7 +8,6 @@ from flask import current_app
 
 from .util import message, run
 
-#@MigrateCommand.command
 def backup():
     """ Back up database to a PostgreSQL dump file."""
     DATA_DIR = current_app.config["DATA_DIR"]
@@ -24,7 +23,6 @@ def backup():
     run("pg_dump -Fc {0} > {1}".format(DB_NAME, path/fn), shell=True)
     message(style("Success!", "green"), "PostgreSQL")
 
-#@MigrateCommand.command
 def restore():
     """ Restore database from a backup."""
     DATA_DIR = app.config["DATA_DIR"]
