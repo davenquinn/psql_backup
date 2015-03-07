@@ -33,11 +33,11 @@ def restore():
     backups = list(path.glob("*.sql"))
     for i,back in enumerate(backups[::-1]):
         stem = back.stem
-        d = get(stem)
+        date = get(stem)
         st = "  ("+style(str(i),
             fg="green",
             bold=True)+") "+back.stem
-        st += " - "+style(d.humanize(), fg="green")
+        st += " - "+style(date.humanize(), fg="green")
         echo(st)
     echo("")
 
