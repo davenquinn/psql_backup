@@ -4,7 +4,6 @@ import click
 from arrow import now,get
 from click import style, echo, secho
 from pathlib import Path
-from functools import partial
 
 from .util import message, run
 
@@ -64,11 +63,4 @@ def restore(DB_NAME, BACKUP_DIR):
 
     run(*cmd)
     message(style("Success!", "green"))
-
-def prepare_commands(DB_NAME, BACKUP_DIR):
-    """ Prepare backup and restore commands for inclusion in an application.
-    """
-    return dict(
-        backup=partial(backup, DB_NAME, BACKUP_DIR),
-        restore=partial(restore, DB_NAME, BACKUP_DIR))
 
