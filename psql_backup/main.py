@@ -4,14 +4,13 @@ import click
 from arrow import now,get
 from click import style, echo, secho
 from pathlib import Path
-from flask import current_app
+from functools import partial
 
 from .util import message, run
 
-def backup():
+def backup(DB_NAME, DATA_DIR):
     """ Back up database to a PostgreSQL dump file."""
-    DATA_DIR = current_app.config["DATA_DIR"]
-    DB_NAME = current_app.config["DB_NAME"]
+
     message("Backing up database...")
 
     fn = now().format('YYYY-MM-DD_HH.mm.ss')+".sql"
@@ -23,10 +22,8 @@ def backup():
     run("pg_dump -Fc {0} > {1}".format(DB_NAME, path/fn), shell=True)
     message(style("Success!", "green"))
 
-def restore():
+def restore(DB_NAME, DATA_DIR):
     """ Restore database from a backup."""
-    DATA_DIR = app.config["DATA_DIR"]
-    DB_NAME = app.config["DB_NAME"]
 
     echo("Which backup do you want to restore?\n")
     path = Path(DATA_DIR)/"backups"
@@ -67,4 +64,11 @@ def restore():
 
     run(*cmd)
     message(style("Success!", "green"))
+
+def prepare_commands(DB_NAME, DATA_DIR):
+    """ Prepare backup and restore commands for inclusion in an application.
+    """
+    return dict(
+        backup=partial(backup, DB_NAME, DATA_DIR),
+        restore=partial(restore, DB_NAME, DATA_DIR))
 

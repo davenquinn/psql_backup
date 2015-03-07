@@ -20,23 +20,23 @@ requirements = [
     ]
 
 setup(
-    name='Flask-PGBackup',
+    name='psql_backup',
     version='0.1.0',
-    description="Flask-PGBackup provides a simple command-line interface for backing up and restoring a PostgreSQL database.",
+    description="psql_backup provides a simple command-line interface for backing up and restoring a PostgreSQL database.",
     long_description=readme + '\n\n' + history,
     author="Daven Quinn",
     author_email='dev@davenquinn.com',
-    url='https://github.com/davenquinn/flask_pgbackup',
+    url='https://github.com/davenquinn/psql_backup',
     packages=[
-        'flask_pgbackup',
+        'psql_backup',
     ],
-    package_dir={'flask_pgbackup':
-                 'flask_pgbackup'},
+    package_dir={'psql_backup':
+                 'psql_backup'},
     include_package_data=True,
     install_requires=requirements,
     license="BSD",
     zip_safe=False,
-    keywords='flask_pgbackup',
+    keywords='psql_backup',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',
