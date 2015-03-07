@@ -2,8 +2,7 @@
 psql_backup
 ===============================
 
-`psql_backup` provides a quick and dirty command-line
-interface for backing up and restoring a PostgreSQL
+`psql_backup` is a Python CLI for backing up and restoring a PostgreSQL
 database *en masse* from SQL dumps.
 
 Features
