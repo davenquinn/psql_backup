@@ -20,13 +20,13 @@ requirements = [
     ]
 
 setup(
-    name='psql_backup',
+    name='psql-backup',
     version='0.1.0',
-    description="psql_backup provides a simple command-line interface for backing up and restoring a PostgreSQL database.",
+    description="psql-backup provides a simple command-line interface for backing up and restoring a PostgreSQL database.",
     long_description=readme + '\n\n' + history,
     author="Daven Quinn",
     author_email='dev@davenquinn.com',
-    url='https://github.com/davenquinn/psql_backup',
+    url='https://github.com/davenquinn/psql-backup',
     packages=[
         'psql_backup',
     ],
@@ -36,7 +36,7 @@ setup(
     install_requires=requirements,
     license="BSD",
     zip_safe=False,
-    keywords='psql_backup',
+    keywords='psql-backup',
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',
