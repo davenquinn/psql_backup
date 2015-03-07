@@ -8,13 +8,13 @@ from functools import partial
 
 from .util import message, run
 
-def backup(DB_NAME, DATA_DIR):
+def backup(DB_NAME, BACKUP_DIR):
     """ Back up database to a PostgreSQL dump file."""
 
     message("Backing up database...")
 
     fn = now().format('YYYY-MM-DD_HH.mm.ss')+".sql"
-    path = Path(DATA_DIR)/"backups"
+    path = Path(BACKUP_DIR)
     try:
         path.mkdir()
     except OSError:
@@ -22,11 +22,11 @@ def backup(DB_NAME, DATA_DIR):
     run("pg_dump -Fc {0} > {1}".format(DB_NAME, path/fn), shell=True)
     message(style("Success!", "green"))
 
-def restore(DB_NAME, DATA_DIR):
+def restore(DB_NAME, BACKUP_DIR):
     """ Restore database from a backup."""
 
     echo("Which backup do you want to restore?\n")
-    path = Path(DATA_DIR)/"backups"
+    path = Path(BACKUP_DIR)
     backups = list(path.glob("*.sql"))
     for i,back in enumerate(backups[::-1]):
         stem = back.stem
@@ -65,10 +65,10 @@ def restore(DB_NAME, DATA_DIR):
     run(*cmd)
     message(style("Success!", "green"))
 
-def prepare_commands(DB_NAME, DATA_DIR):
+def prepare_commands(DB_NAME, BACKUP_DIR):
     """ Prepare backup and restore commands for inclusion in an application.
     """
     return dict(
-        backup=partial(backup, DB_NAME, DATA_DIR),
-        restore=partial(restore, DB_NAME, DATA_DIR))
+        backup=partial(backup, DB_NAME, BACKUP_DIR),
+        restore=partial(restore, DB_NAME, BACKUP_DIR))
 
