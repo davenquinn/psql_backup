@@ -14,15 +14,14 @@ with open('HISTORY.rst') as history_file:
     history = history_file.read().replace('.. :changelog:', '')
 
 requirements = [
-    # TODO: put package requirements here
-]
-
-test_requirements = [
-    # TODO: put package test requirements here
-]
+    "pathlib",
+    "flask",
+    "arrow",
+    "click"
+    ]
 
 setup(
-    name='flask_pgbackup',
+    name='Flask-PGBackup',
     version='0.1.0',
     description="Flask-PGBackup provides a simple command-line interface for backing up and restoring a PostgreSQL database.",
     long_description=readme + '\n\n' + history,
@@ -48,9 +47,7 @@ setup(
         'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.2',
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
-    ],
-    test_suite='tests',
-    tests_require=test_requirements
-)
+    ])
