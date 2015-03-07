@@ -9,7 +9,7 @@ Flask-PGBackup
         :target: https://pypi.python.org/pypi/flask_pgbackup
 
 
-Flask-PGBackup provides a sisimple command-line interface for backing up and restoring a PostgreSQL database.
+Flask-PGBackup provides a simple command-line interface for backing up and restoring a PostgreSQL database.
 
 * Free software: BSD license
 * Documentation: https://flask_pgbackup.readthedocs.org.
