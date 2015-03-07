@@ -12,7 +12,7 @@ def backup():
     """ Back up database to a PostgreSQL dump file."""
     DATA_DIR = current_app.config["DATA_DIR"]
     DB_NAME = current_app.config["DB_NAME"]
-    message("Backing up database...", "PostgreSQL")
+    message("Backing up database...")
 
     fn = now().format('YYYY-MM-DD_HH.mm.ss')+".sql"
     path = Path(DATA_DIR)/"backups"
@@ -21,7 +21,7 @@ def backup():
     except OSError:
         pass
     run("pg_dump -Fc {0} > {1}".format(DB_NAME, path/fn), shell=True)
-    message(style("Success!", "green"), "PostgreSQL")
+    message(style("Success!", "green"))
 
 def restore():
     """ Restore database from a backup."""
@@ -57,7 +57,7 @@ def restore():
                       "All newer changes will be lost!", abort=True)
     except click.exceptions.Abort:
         echo("")
-        echo("Aborting.")
+        echo("Aborting backup.")
         return
 
     cmd = ["pg_restore",
@@ -66,5 +66,5 @@ def restore():
             str(backup)]
 
     run(*cmd)
-    message(style("Success!", "green"),"PostgreSQL")
+    message(style("Success!", "green"))
 

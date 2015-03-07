@@ -4,10 +4,8 @@ from click import echo, style
 from subprocess import call
 from shlex import split
 
-def message(message, section=None, color="cyan"):
-    s = "["+style(section, color)+"] " if section else ""
-    s += message
-    echo(s)
+def message(s):
+    echo("["+style("PostgreSQL", "cyan")+"] "+s)
 
 def run(*command, **kwargs):
     shell = kwargs.pop("shell",False)
@@ -17,5 +15,4 @@ def run(*command, **kwargs):
         call(command,shell=True)
     else:
         call(split(command))
-
 
