@@ -31,8 +31,8 @@ class PSQL_Backup(object):
 
         echo("Which backup do you want to restore?\n")
         path = self.BACKUP_DIR
-        backups = list(path.glob("*.sql"))
-        for i,back in enumerate(backups[::-1]):
+        backups = list(path.glob("*.sql"))[::-1]
+        for i,back in enumerate(backups):
             stem = back.stem
             date = get(stem)
             st = "  ("+style(str(i),
@@ -50,6 +50,7 @@ class PSQL_Backup(object):
                 raise click.BadParameter("Pick from the available options")
             except ValueError:
                 raise click.BadParameter("Enter a number")
+
         try:
             backup = click.prompt("Enter a number to continue",
                     value_proc=validate_number, type=int)
